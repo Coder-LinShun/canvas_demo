@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        canvas{
+            width:100%;
+            transform: translateX(4%)
+            }
+    </style>
 </head>
 
 <body>
     <canvas id="content" width="1300" height="600"></canvas>
 </body>
 <script>
+   
     var ctx = document.getElementById('content').getContext('2d');
     var n, m, i, x, a, gra;  
     var ary = ["#FF00FF", "#00FFFF", "#0000FF", "#00FF00", "#FFFF00", "#FF7D00", "#FF0000"];
