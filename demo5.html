@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+          
+            background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539101531762&di=ed3af1f0bd9b9d0f121d28568a38d99b&imgtype=jpg&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D3156083810%2C673699036%26fm%3D214%26gp%3D0.jpg');
+            background-size: cover;
+            color: rgb(239, 250, 143);
+        }
+        canvas{
+            display: block;
+            margin:0 auto;
+            /* transform: scale(0.6) */
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="can" width="1600" height="1600"></canvas>
+</body>
+<script>
+    document.documentElement.scrollTop=500;
+    document.documentElement.scrollLeft=100;
+    var ctx = document.getElementById('can').getContext('2d');
+    var a = 1;
+    ctx.translate(800,800);
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    var gra = ctx.createRadialGradient(0, 0, 1, 0, 0, 50)
+    gra.addColorStop(0, 'red')
+    gra.addColorStop(0.6, 'orangered')
+    gra.addColorStop(0.9, 'rgb(255, 217, 0)')
+    gra.addColorStop(1, 'yellow')
+    var graAry = ['', 'gray', 'rgb(41, 41, 211)','lightblue','red', 'orange', 'orangered', 'yellow',"rgb(239, 250, 143)"]
+
+    //行星数量
+    var s=8;
+
+    setInterval(show, 20)
+    function show() {
+        ctx.clearRect(-800, -800, 1600,1600)
+
+        //恒星
+        ctx.beginPath();
+        ctx.arc(0, 0, 55, 0, Math.PI * 2);
+        ctx.fillStyle = gra;
+        ctx.fill();
+
+        //行星 轨道
+        for (var m = s; m > 0; m--) { 
+            ctx.save();           
+            ctx.beginPath();
+            ctx.arc(0, 0, (100 + 50 * (s - m) + (s - m) * (s - m) * (s - m)), 0, Math.PI * 2);
+            ctx.stroke()                   
+            ctx.beginPath();
+            ctx.rotate((a + (m * m * m)) * 0.05 * m * Math.PI / (180 / m));
+            ctx.arc((100 + 50 * (s - m) + (s - m) * (s - m) * (s - m)), 0, (22 - m), 0, Math.PI * 2);
+            ctx.fillStyle = graAry[m];
+            ctx.fill();
+            ctx.restore();
+        }
+        a++;
+    }   
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas,
+        img {
+            position: absolute;
+            border: 1px solid black
+        }
+
+        img {
+            width: 650px;
+            height: 400px;
+            color: rgba(204, 204, 204, 0.603)
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539099996148&di=acd38b34de5c91e9300f78187acf8d50&imgtype=0&src=http%3A%2F%2Fpic1.16pic.com%2F00%2F04%2F93%2F16pic_493326_b.jpg"
+        alt="">
+    <canvas id="can" width="650" height="400"></canvas>
+</body>
+<script>
+    var ctx = document.getElementById('can').getContext('2d');
+    var ary = [];
+    for (var i = 0; i < 80; i++) {
+        ary.push({
+            posx: Math.random() * 650,
+            posy: Math.random() * 400,
+            vy: -(Math.random() + 1),
+            size: Math.random() * 8 + 1
+        });
+    }
+    function show() {
+        ctx.clearRect(0, 0, 650, 400);
+        for (var i = 0; i < 80; i++) {
+            var bubble = ary[i];
+            bubble.posy = bubble.posy + bubble.vy;
+            if (bubble.posy < 0) {
+                bubble.posy = 400;
+                bubble.posx = Math.random() * 650;
+            }
+            ctx.beginPath();
+            ctx.arc(bubble.posx, bubble.posy, bubble.size, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(204, 204, 204, 0.303)';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.403)';
+            ctx.stroke();
+        }
+    }
+    show();
+    var timer = setInterval(show, 20);
+</script>
+</html>

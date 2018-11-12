@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="content" width="1300" height="600"></canvas>
+</body>
+<script>
+    var ctx = document.getElementById('content').getContext('2d');
+    var n, m, i, x, a, gra;  
+    var ary = ["#FF00FF", "#00FFFF", "#0000FF", "#00FF00", "#FFFF00", "#FF7D00", "#FF0000"];
+    ctx.translate(600, 300);
+    ctx.lineWidth = 2;
+    setInterval(function () {
+        n = 11, m = 10, i = 0, x = 0;
+        ctx.clearRect(-600, -300, 1200, 601);
+        gra = ctx.createLinearGradient(0, 0, -650, 0);
+        gra.addColorStop(0, ary[0]);
+        gra.addColorStop(0.08, ary[1]);
+        gra.addColorStop(0.2, ary[2]);
+        gra.addColorStop(0.35, ary[3]);
+        gra.addColorStop(0.55, ary[4]);
+        gra.addColorStop(0.75, ary[5]);
+        gra.addColorStop(1, ary[6]);
+
+        while (i < 30) {
+            ctx.beginPath();
+            ctx.arc(-n, 0, m, 0, 2 * Math.PI)
+            ctx.strokeStyle = gra
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(n, 0, m, 0, 2 * Math.PI)
+            ctx.strokeStyle = ary[x]
+            ctx.stroke();
+
+            n += 10; m += 10; i++; x++;
+            if (x == 7) { x = 0 }
+        }
+
+        a = ary[6];
+        for (var t = 6; t > 0; t--) {
+            ary[t] = ary[t - 1]
+        }
+        ary[0] = a;
+    }, 150)
+</script>
+</html>

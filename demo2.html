@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #text,#content{
+            position: absolute
+        }
+        #text{
+            width:300px;
+            height:150px;
+            font:20px/150px '微软雅黑';
+            text-align:center
+        }
+        #content{
+            border:2px solid black
+        }
+    </style>
+</head>
+<body>
+    <div id="text" ></div>
+    <canvas id="content" width="300" height="150"></canvas>
+</body>
+<script>
+    var text=document.getElementById('text');
+    var cont=document.getElementById('content');
+    var ctx=cont.getContext('2d');
+    ctx.fillStyle='#ccc';
+    ctx.fillRect(0,0,300,150);   
+        cont.onmousedown=function(){
+            cont.onmousemove=function(event){
+                event=event||window.event
+                console.log(event.offsetX,event.offsetY)
+                ctx.clearRect(event.offsetX-10,event.offsetY-10,20,20)
+            }
+        }
+        cont.onmouseup=function(){
+            cont.onmousemove=null;
+        }    
+    var n=Math.round(Math.random()*100);
+    if(n>30){
+        text.innerText='非常遗憾,没有中奖';
+    }else if(n<=30&&n>10){
+        text.innerText='三等奖';
+    }else if(n<=10&&n>2){
+        text.innerText='二等奖';
+    }else{
+        text.innerText='一等奖';
+    }
+</script>
+
+
+</html>
