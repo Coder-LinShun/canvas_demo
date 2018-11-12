@@ -1,6 +1,6 @@
 # canvas_demo
 使用canvas做的几个小例子
-变化: https://coder-linshun.github.io/canvas_demo/demo1.html  
+变化:<a href='https://coder-linshun.github.io/canvas_demo/demo1.html '> https://coder-linshun.github.io/canvas_demo/demo1.html  </a>
 
 刮奖: https://coder-linshun.github.io/canvas_demo/demo2.html
 
